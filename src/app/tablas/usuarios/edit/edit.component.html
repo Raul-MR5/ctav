@@ -1,0 +1,61 @@
+<div class="container">
+    <main>
+        <div class="py-5 text-center">
+            <h2>Actualizar usuario</h2>
+        </div>
+
+        <div class="row g-5">
+            <div class="col-12">
+                <h4 class="mb-5">Información</h4>
+                <form [formGroup]="form">
+                    <div class="row g-3">
+                        <div class="col-lg-4 col-md-6 col-sm-12">
+                            <label for="nombreUsuario" class="form-label">Nombre de usuario</label>
+                            <input type="text" class="form-control" formControlName="nombreUsuario" placeholder=""
+                                required>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 col-sm-12">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="text" class="form-control" formControlName="email" placeholder="" required>
+                        </div>
+
+                        <div class="col-lg-4 col-md-12 col-sm-12">
+                            <label for="rol" class="form-label">Rol</label>
+
+                            <select class="form-select" (change)="changeRol($event)" [compareWith]="compare" formControlName="rol" required>
+                                <option *ngFor="let rol of roles" [selected]="rolUser.rolNombre == rol.rolNombre">
+                                    {{rol.rolNombre}}
+
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <hr class="my-5">
+
+                    <h4 class="mb-5">Permisos extra</h4>
+
+                    <div class="row g-3">
+                        <div class="form-check col-lg-6 col-md-6 col-sm-12" formArrayName="permisos"
+                            *ngFor="let permiso of permisos">
+                            <input class="form-check-input" type="checkbox" name="permisos" id="{{permiso.nombre}}"
+                                [checked]="getPermisos(permiso)" [disabled]="getRolPermiso(permiso)" (change)="onCheckboxChange($event)">
+                            <label class="form-check-label" for="{{permiso.nombre}}">
+                                {{permiso.nombre}}
+                            </label>
+                        </div>
+                    </div>
+                    <hr class="my-5">
+
+                    <button class="my-5 w-100 btn btn-back btn-lg text-white" type="submit"
+                        (click)="send(form)">Actualizar</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer class="text-muted text-center text-small">
+        <p class="mb-1">&copy; 2022 BoomClub</p>
+    </footer>
+</div>

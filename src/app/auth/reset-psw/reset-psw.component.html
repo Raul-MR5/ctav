@@ -1,0 +1,33 @@
+<main class="form-back bg-dark">
+    <form class="form-signin" [formGroup]="form" (submit)="submit()">
+        <div class="row g-2">
+            <div class="form-img">
+                <img class="mb-4" src="../../../assets/img/boomclub.png" alt="" width="120" height="120">
+            </div>
+            <h1 class="h3 mb-3 fw-normal">Set the new password</h1>
+
+            <div class="col-sm-6">
+                <label for="password" class="form-label">Password</label>
+                <input formControlName="password" type="password" class="form-control" id="address">
+
+                <p class="invalid-error"
+                    *ngIf="form.get('password').invalid && (form.get('password').dirty || form.get('password').touched)">
+                    Password is required
+                </p>
+            </div>
+            
+            <div class="col-sm-6">
+                <label for="repeatPassword" class="form-label">Repeat Password</label>
+                <input formControlName="repeatPassword" type="password" class="form-control" id="address">
+
+                <p class="invalid-error"
+                    *ngIf="(form.get('repeatPassword').value != form.get('password').value) && (form.get('repeatPassword').dirty || form.get('repeatPassword').touched)">
+                    The password not match
+                </p>
+            </div>
+        </div>
+
+        <button class="mt-3 w-100 btn btn-lg btn-back" type="submit" [disabled]="(form.invalid || (form.get('repeatPassword').value != form.get('password').value))">Send</button>
+        <p class="mt-3 mb-3 text-muted form-img">&copy; 2022</p>
+    </form>
+</main>

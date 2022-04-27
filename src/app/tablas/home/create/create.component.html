@@ -1,0 +1,59 @@
+<p-toast></p-toast>
+
+<div class="container">
+    <main>
+        <div class="py-5 text-center">
+            <h2>Crear usuario</h2>
+        </div>
+
+        <div class="row g-5">
+            <div class="col-12">
+                <h4 class="mb-5">Información</h4>
+                <form [formGroup]="form">
+                    <div class="row g-3">
+                        <div class="col-lg-4 col-md-6 col-sm-12">
+                            <label for="nombreEvento" class="form-label">Nombre de evento</label>
+                            <input type="text" class="form-control" formControlName="nombreEvento" placeholder=""
+                                required>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 col-sm-12">
+                            <label for="fecha" class="form-label">Fecha</label>
+                            <input type="date" class="form-control" formControlName="fecha" placeholder="" required>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 col-sm-12">
+                            <label for="enlaceWeb" class="form-label">Enlace Web</label>
+                            <input type="url" class="form-control" formControlName="enlaceWeb" placeholder="" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="descripcion">Descripción</label>
+                            <textarea class="form-control" formControlName="descripcion" rows="3"></textarea>
+                        </div>
+                    </div>
+
+                    <hr class="my-5">
+
+                    <h4 class="mb-3">Añadir foto</h4>
+
+                    <p-fileUpload name="foto[]" (onSelect)="onUpload($event)" (onRemove)="onClear()" [multiple]="true"
+                        accept="image/png" chooseLabel="Elige foto" [showUploadButton]="false" [showCancelButton]="false">
+                    </p-fileUpload>
+
+                    <!-- <input type="file" #fileInput id="uploadFile" (change)="onUpload($event)" multiple="multiple"
+                        name="uploadFile" accept="image/*" /> -->
+
+                    <hr class="my-5">
+
+                    <button class="my-5 w-100 btn btn-back btn-lg text-white" type="submit"
+                        (click)="send(form)">Crear</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer class="text-muted text-center text-small">
+        <p class="mb-1">&copy; 2022 BoomClub</p>
+    </footer>
+</div>

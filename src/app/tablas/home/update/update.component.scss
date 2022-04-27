@@ -1,0 +1,45 @@
+td {
+    vertical-align: middle;
+}
+
+.container {
+    max-width: 960px;
+}
+
+.image-grid {
+    position: relative;
+
+      .button-delete {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 30px;
+        height: 30px;
+        position: absolute;
+        right: 10px;
+        top: 10px;
+      }
+
+      .button-download {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 30px;
+        height: 30px;
+        position: absolute;
+        right: 10px;
+        bottom: 10px;
+      }
+}
+
+.icon-delete {
+    filter: invert(99%) sepia(0%) saturate(7497%) hue-rotate(250deg) brightness(104%) contrast(100%);
+}
+
+.icon-download {
+    filter: invert(99%) sepia(0%) saturate(7497%) hue-rotate(250deg) brightness(104%) contrast(100%);
+}
+
+.btn-back {
+    background-color: #ab6c6c;
+}

@@ -1,0 +1,23 @@
+<main class="form-back bg-dark">
+    <form class="form-signin" [formGroup]="form" (submit)="submit()">
+        <div class="row g-2">
+            <div class="form-img">
+                <img class="mb-4" src="../../../assets/img/boomclub.png" alt="" width="120" height="120">
+            </div>
+            <h1 class="h3 mb-3 fw-normal">Identificate yourself</h1>
+
+            <div class="col-sm-12">
+                <label for="email" class="form-label">Username or Email</label>
+                <input formControlName="email" type="text" class="form-control" id="email" placeholder="" value="">
+
+                <p class="invalid-error"
+                    *ngIf="form.get('email').invalid && (form.get('email').dirty || form.get('email').touched)">
+                    Name or email is required
+                </p>
+            </div>
+        </div>
+
+        <button class="mt-3 w-100 btn btn-lg btn-back" type="submit">Send</button>
+        <p class="mt-3 mb-3 text-muted form-img">&copy; 2022</p>
+    </form>
+</main>

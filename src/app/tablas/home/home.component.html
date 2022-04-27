@@ -1,0 +1,91 @@
+<div class="container-fluid">
+    <main class="col-12 content-box">
+        <h2 class="mt-2 mb-3">Listado de eventos</h2>
+
+        <div class="table-responsive">
+            <p-table [value]="eventos" class="table table-striped table-sm">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th pSortableColumn="fotos" scope="col">Fotos <p-sortIcon field="fotos"></p-sortIcon>
+                        </th>
+                        <th pSortableColumn="nombreEvento" scope="col">Nombre <p-sortIcon field="nombreEvento">
+                            </p-sortIcon>
+                        </th>
+                        <th pSortableColumn="descripcion" scope="col">Descripción <p-sortIcon field="descripcion">
+                            </p-sortIcon>
+                        </th>
+                        <th pSortableColumn="fecha" scope="col">Fecha <p-sortIcon field="fecha"></p-sortIcon>
+                        </th>
+                        <th pSortableColumn="enlaceWeb" scope="col">Enlace Web <p-sortIcon field="enlaceWeb">
+                            </p-sortIcon>
+                        </th>
+                        <th scope="col" *ngIf="haveAuth('WRITE_ADMIN')">Edición</th>
+                        <th scope="col" *ngIf="haveAuth('WRITE_ADMIN')">Eliminación</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-evento>
+                    <tr>
+                        <td *ngIf="evento.fotos.length <= 0"></td>
+                        <td *ngIf="evento.fotos.length > 0"><img src="data:image/png;base64,{{getFotos(evento)}}"> </td>
+                        <td>{{evento.nombreEvento}}</td>
+                        <td>{{evento.descripcion}}</td>
+                        <td>{{evento.fecha}}</td>
+                        <td>{{evento.enlaceWeb}}</td>
+                        <td *ngIf="haveAuth('READ_ADMIN')">
+                            <button type="button" class="w-100 btn btn-warning" (click)="goTo('update/' +evento.id)"
+                                [disabled]="!haveAuth('WRITE_ADMIN')">Editar</button>
+                        </td>
+                        <td *ngIf="haveAuth('READ_ADMIN')">
+                            <button type="button" class="w-100 btn btn-danger" (click)="delete(evento.id)"
+                                [disabled]="!haveAuth('WRITE_ADMIN')">Eliminar</button>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+
+        <!-- <div class="table-responsive">
+            <table class="table table-striped table-sm">
+                <thead>
+                    <tr>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Descripcion</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Enlace Web</th>
+                        <th scope="col" *ngIf="haveAuth('READ_ADMIN')">Edición</th>
+                        <th scope="col" *ngIf="haveAuth('READ_ADMIN')">Eliminación</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let evento of entities$ | async" class="justificado">
+                        <td>
+                            {{evento.nombreEvento}}
+                        </td>
+                        <td>
+                            {{evento.descripcion}}
+                        </td>
+                        <td>
+                            {{evento.fecha | date: 'dd-MM-yyyy'}}
+                        </td>
+                        <td>
+                            {{evento.enlaceWeb}}
+                        </td>
+                        <td *ngIf="haveAuth('READ_ADMIN')">
+                            <button type="button" class="w-100 btn btn-warning" (click)="goTo('update/' +evento.id)"
+                                [disabled]="!haveAuth('WRITE_ADMIN')">Editar</button>
+                        </td>
+                        <td *ngIf="haveAuth('READ_ADMIN')">
+                            <button type="button" class="w-100 btn btn-danger" (click)="delete(evento.id)"
+                                [disabled]="!haveAuth('WRITE_ADMIN')">Eliminar</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div> -->
+
+        <div *ngIf="haveAuth('READ_ADMIN')">
+            <button type="button" class="btn btn-info text-white" (click)="goTo('create')"
+                [disabled]="!haveAuth('WRITE_ADMIN')">Crear</button>
+        </div>
+    </main>
+</div>
